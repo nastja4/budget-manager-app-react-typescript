@@ -1,0 +1,170 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  /* my font color */
+  color: #05014a;
+  --error-color: #b31919;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* d7c9c9 */
+  /* ff7f50 */
+
+  /* #ff3787
+#ff4b37
+#ffaf37 */
+
+  background-color: #ff7657;
+}
+
+a {
+  color: #000;
+}
+
+.dark a {
+  color: #fff;
+}
+
+.main-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.loading {
+  text-align: center;
+  font-size: 25px;
+  letter-spacing: 1px;
+  margin: 1rem auto;
+}
+
+.red {
+  color: var(--error-color);
+}
+
+.error-msg {
+  color: var(--error-color);
+  letter-spacing: 1px;
+  margin-top: 4px;
+  font-size: 20px;
+}
+
+.success-msg {
+  color: #2a902a;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  font-size: 20px;
+}
+
+.main {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+.left {
+  flex: 2;
+}
+
+.right {
+  flex: 10;
+  /* d7c9c9 7657ff */
+  background-color: #481fff;
+  padding: 10px;
+  color: #fff;
+}
+
+.light {
+  color: #000;
+}
+
+.dark {
+  color: #fff;
+  background-color: #000;
+}
+
+.dark button.btn {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+/* menu styling starts */
+
+.hamburger-menu,
+.close-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: none;
+  cursor: pointer;
+}
+/* menu styling ends */
+
+@media screen and (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .close-menu {
+    display: none;
+  }
+
+  .list-item .icon {
+    display: none;
+  }
+
+  .list .list-item,
+  .menu-open .mode-toggle {
+    font-size: 25px;
+  }
+
+  .left {
+    flex: 1;
+  }
+
+  .right {
+    flex: 11;
+  }
+
+  .main .list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+  }
+
+  .menu-open .list {
+    display: flex;
+  }
+
+  .menu-open .close-menu {
+    display: block;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .menu-open .left {
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+  }
+}
