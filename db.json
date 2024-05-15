@@ -1,0 +1,25 @@
+{
+  "expenses": [
+    {
+      "id": 1,
+      "expense_type": "card",
+      "expense_date": "2024-03-13",
+      "expense_amount": "250",
+      "description": "Table"
+    },
+    {
+      "id": 2,
+      "expense_type": "card",
+      "expense_date": "2024-02-02",
+      "expense_amount": "50",
+      "description": "Restaurant"
+    },
+    {
+      "id": 3,
+      "expense_type": "cash",
+      "expense_date": "2024-04-30",
+      "expense_amount": "150",
+      "description": "Concert ticket"
+    }
+  ]
+}

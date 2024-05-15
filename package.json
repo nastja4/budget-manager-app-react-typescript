@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start-server": "json-server ./db.json --port 4000 --watch"
   },
   "dependencies": {
+    "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
@@ -26,6 +28,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "json-server": "^1.0.0-beta.0",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }

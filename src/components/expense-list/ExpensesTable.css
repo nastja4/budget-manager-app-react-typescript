@@ -1,0 +1,67 @@
+.expense-list {
+  font-family: inherit;
+  border-collapse: collapse;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dark .expense-list td {
+  background-color: #000;
+  color: #fff;
+}
+
+.expense-list td,
+.expense-list th {
+  padding: 8px;
+}
+
+.expense-list tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.expense-list tr:hover {
+  background-color: #ddd;
+}
+
+.expense-list .heading {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  /* b09999 */
+  /* a30085 */
+  /* 006112 */
+  background-color: #2400c7;
+  /* FF5CE1 */
+  /* 05014A */
+  /* color: #05014a; */
+
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.expense-list .expense-item {
+  width: 25%;
+}
+
+.expense-list .button {
+  letter-spacing: 1px;
+  border-radius: 5px;
+  color: #000;
+  border: none;
+}
+
+.expense-list .btn-delete {
+  background-color: #f1a6ad;
+}
+
+.expense-list .active > td {
+  background-color: #d7c9c9;
+}
+
+.expense-list .active .button {
+  color: #000;
+}
+
+.dark .expense-list .active .button {
+  color: #fff;
+}
