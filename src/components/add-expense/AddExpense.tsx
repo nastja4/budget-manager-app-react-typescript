@@ -2,12 +2,18 @@ import axios from "axios";
 import ExpenseForm from "../expense-form/ExpenseForm";
 import { BASE_API_URL } from "../../utils/constants";
 import { Expense } from "../../types";
+import { FC } from "react";
 
-const AddExpense = () => {
+interface AddExpenseProps {
+  handleRefresh: () => void;
+}
+
+const AddExpense: FC<AddExpenseProps> = ({ handleRefresh }) => {
   const handleSubmit = async (inputData: Expense): Promise<boolean> => {
     try {
       const { data } = await axios.post(BASE_API_URL, { ...inputData });
       console.log("posting", data);
+      handleRefresh();
       return true;
     } catch (error) {
       console.log(error);

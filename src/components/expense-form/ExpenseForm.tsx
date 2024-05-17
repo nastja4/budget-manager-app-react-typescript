@@ -73,7 +73,7 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm }) => {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="expense_amount">
-        <Form.Label>Expense Amount (In EURO)</Form.Label>
+        <Form.Label>Expense Amount (In EUR)</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter amount"

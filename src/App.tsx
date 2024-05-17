@@ -13,6 +13,7 @@ const App = () => {
   const [expenses, setExpenses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const getExpenses = async () => {
@@ -31,7 +32,11 @@ const App = () => {
     };
 
     getExpenses();
-  }, []);
+  }, [refresh]);
+
+  const handleRefresh = () => {
+    setRefresh((refresh) => !refresh);
+  };
 
   return (
     <BrowserRouter>
@@ -47,7 +52,10 @@ const App = () => {
               />
             }
           />
-          <Route path="/add" element={<AddExpense />} />
+          <Route
+            path="/add"
+            element={<AddExpense handleRefresh={handleRefresh} />}
+          />
           <Route path="/search" element={<SearchExpense />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Navigate to="/" />} />

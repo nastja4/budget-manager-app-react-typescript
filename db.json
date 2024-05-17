@@ -15,11 +15,18 @@
       "description": "Restaurant"
     },
     {
+      "id": 3,
+      "expense_type": "cash",
+      "expense_date": "2024-04-30",
+      "expense_amount": "150",
+      "description": "Concert ticket"
+    },
+    {
       "expense_type": "card",
       "expense_date": "2024-05-17",
-      "expense_amount": "150",
-      "description": "Shoes",
-      "id": 3
+      "expense_amount": "30",
+      "description": "Book",
+      "id": 4
     }
   ]
 }
