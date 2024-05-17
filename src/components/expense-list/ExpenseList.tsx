@@ -14,7 +14,7 @@ const ExpenseList: FC<ExpenseListProps> = ({
   errorMsg,
 }) => {
   return (
-    <div className="main-container">
+    <div className="main-content">
       <h2 className="my-3 text-center">Expense List</h2>
       {isLoading && <p className="loading">Loading...</p>}
       {errorMsg && <p className="error-msg">{errorMsg}</p>}

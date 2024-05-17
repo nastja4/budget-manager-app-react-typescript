@@ -7,6 +7,7 @@ import SearchExpense from "./components/search-expense/SearchExpense";
 import Profile from "./components/profile/Profile";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_API_URL } from "./utils/constants";
 
 const App = () => {
   const [expenses, setExpenses] = useState([]);
@@ -18,7 +19,7 @@ const App = () => {
       try {
         setIsLoading(true);
         setErrorMsg("");
-        const { data } = await axios.get("http://localhost:4000/expenses");
+        const { data } = await axios.get(BASE_API_URL);
         console.log(data);
         setExpenses(data);
       } catch (error) {

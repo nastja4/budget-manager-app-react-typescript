@@ -2,22 +2,50 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Expense } from "../../types";
 import "./ExpenseForm.css";
+import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const ExpenseForm = () => {
+interface ExpenseFormProps {
+  onSubmitForm: (inputData: Expense) => Promise<boolean>;
+}
+
+const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm }) => {
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Expense>();
 
-  const onSubmit = (data: Expense) => {
-    console.log("data", data);
-  };
+  const navigate = useNavigate();
 
-  console.log("errors", errors);
+  const onSubmit = async (data: Expense) => {
+    console.log("data", data);
+    const isSuccess = await onSubmitForm(data);
+    if (isSuccess) {
+      reset();
+      setErrorMsg("");
+      setSuccessMsg("Expense added successfuly.");
+      setTimeout(() => {
+        setSuccessMsg("");
+        navigate("/");
+      }, 3000);
+      console.log("success");
+    } else {
+      setSuccessMsg("");
+      setErrorMsg("Error while adding expense. Try again.");
+      console.log("failure");
+    }
+  };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      {successMsg && <p className="success-msg">{successMsg}</p>}
+      {errorMsg && <p className="error-msg">{errorMsg}</p>}
+
       <Form.Group className="mb-3" controlId="expense_type">
         <Form.Label>Expense Type</Form.Label>
         <Form.Select
@@ -43,8 +71,9 @@ const ExpenseForm = () => {
           <p className="error-msg">Please enter expense date</p>
         )}
       </Form.Group>
+
       <Form.Group className="mb-3" controlId="expense_amount">
-        <Form.Label>Expense Amount (In Euro)</Form.Label>
+        <Form.Label>Expense Amount (In EURO)</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter amount"
@@ -54,6 +83,7 @@ const ExpenseForm = () => {
           <p className="error-msg">Please enter expense amount</p>
         )}
       </Form.Group>
+
       <Form.Group className="mb-3" controlId="description">
         <Form.Label>Description</Form.Label>
         <Form.Control
@@ -66,6 +96,7 @@ const ExpenseForm = () => {
           <p className="error-msg">Please enter description</p>
         )}
       </Form.Group>
+
       <Form.Group className="mb-3">
         <Button type="submit" className="btn-success" variant="success">
           Add Expense

@@ -24,11 +24,11 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses }) => {
       <tbody>
         {expenses.map(
           (
-            { expense_type, expense_date, expense_amount, description },
+            { expense_type, expense_date, expense_amount, description, id },
             index
           ) => {
             return (
-              <tr>
+              <tr key={id}>
                 <td>{index + 1}</td>
                 <td className="expense-item">{expense_type}</td>
                 <td className="expense-item">{expense_date}</td>
@@ -37,12 +37,12 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses }) => {
                 <td>
                   <Button variant="info" size="sm">
                     Edit
-                  </Button>{" "}
+                  </Button>
                 </td>
                 <td>
                   <Button variant="danger" size="sm">
                     Delete
-                  </Button>{" "}
+                  </Button>
                 </td>
               </tr>
             );
@@ -51,9 +51,6 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses }) => {
       </tbody>
     </Table>
   );
-  {
-    /* <div>ExpenseTable</div>; */
-  }
 };
 
 export default ExpenseTable;
