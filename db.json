@@ -15,32 +15,11 @@
       "description": "Restaurant"
     },
     {
-      "id": 3,
-      "expense_type": "cash",
-      "expense_date": "2024-04-30",
-      "expense_amount": "150",
-      "description": "Concert ticket"
-    },
-    {
-      "id": 4,
       "expense_type": "card",
       "expense_date": "2024-05-17",
-      "expense_amount": "10",
-      "description": "some"
-    },
-    {
-      "id": 5,
-      "expense_type": "card",
-      "expense_date": "2024-05-24",
-      "expense_amount": "10",
-      "description": "sss"
-    },
-    {
-      "id": "d217",
-      "expense_type": "cash",
-      "expense_date": "2024-05-18",
-      "expense_amount": "56",
-      "description": "Wood"
+      "expense_amount": "150",
+      "description": "Shoes",
+      "id": 3
     }
   ]
 }
