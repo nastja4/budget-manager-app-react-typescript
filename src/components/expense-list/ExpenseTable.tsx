@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Expense } from "../../types";
 import { Button, Table } from "react-bootstrap";
 import "./ExpensesTable.css";
+import { Link } from "react-router-dom";
 
 interface ExpenseTableProps {
   expenses: Expense[];
@@ -35,9 +36,11 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses }) => {
                 <td className="expense-item">{expense_amount}</td>
                 <td className="expense-item">{description}</td>
                 <td>
-                  <Button variant="info" size="sm">
-                    Edit
-                  </Button>
+                  <Link to={`/edit/${id}`}>
+                    <Button variant="info" size="sm">
+                      Edit
+                    </Button>
+                  </Link>
                 </td>
                 <td>
                   <Button variant="danger" size="sm">

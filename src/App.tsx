@@ -8,6 +8,7 @@ import Profile from "./components/profile/Profile";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_API_URL } from "./utils/constants";
+import EditExpense from "./components/edit-expense/EditExpense";
 
 const App = () => {
   const [expenses, setExpenses] = useState([]);
@@ -56,6 +57,7 @@ const App = () => {
             path="/add"
             element={<AddExpense handleRefresh={handleRefresh} />}
           />
+          <Route path="/edit/:id" element={<EditExpense />} />
           <Route path="/search" element={<SearchExpense />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Navigate to="/" />} />

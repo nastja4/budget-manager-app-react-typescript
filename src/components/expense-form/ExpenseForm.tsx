@@ -2,14 +2,15 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Expense } from "../../types";
 import "./ExpenseForm.css";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface ExpenseFormProps {
   onSubmitForm: (inputData: Expense) => Promise<boolean>;
+  expense?: Expense | null;
 }
 
-const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm }) => {
+const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -19,6 +20,18 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm }) => {
     reset,
     formState: { errors },
   } = useForm<Expense>();
+
+  const { id, description, expense_amount, expense_type, expense_date } =
+    expense || {};
+
+  useEffect(() => {
+    reset({
+      description,
+      expense_amount,
+      expense_type,
+      expense_date,
+    });
+  }, [id]);
 
   const navigate = useNavigate();
 
