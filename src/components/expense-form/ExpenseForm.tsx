@@ -21,15 +21,15 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
     formState: { errors },
   } = useForm<Expense>();
 
-  const { id, description, expense_amount, expense_type, expense_date } =
+  const { id, expense_type, expense_date, expense_amount, description } =
     expense || {};
 
   useEffect(() => {
     reset({
-      description,
-      expense_amount,
       expense_type,
       expense_date,
+      expense_amount,
+      description,
     });
   }, [id]);
 
@@ -39,18 +39,24 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
     console.log("data", data);
     const isSuccess = await onSubmitForm(data);
     if (isSuccess) {
-      reset();
+      if (!expense) {
+        // reset for add expense
+        reset();
+      }
+
       setErrorMsg("");
-      setSuccessMsg("Expense added successfuly.");
+      setSuccessMsg(`Expense ${expense ? "updated" : "added"} successfuly.`);
       setTimeout(() => {
         setSuccessMsg("");
         navigate("/");
       }, 3000);
-      console.log("success");
+      // console.log("success");
     } else {
       setSuccessMsg("");
-      setErrorMsg("Error while adding expense. Try again.");
-      console.log("failure");
+      setErrorMsg(
+        `Error while ${expense ? "updating" : "adding"} expense. Try again.`
+      );
+      // console.log("failure");
     }
   };
 
@@ -110,9 +116,9 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
         )}
       </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Button type="submit" className="btn-success" variant="success">
-          Add Expense
+      <Form.Group>
+        <Button type="submit" variant="success">
+          {expense ? "Update" : "Add"} Expense
         </Button>
       </Form.Group>
     </Form>

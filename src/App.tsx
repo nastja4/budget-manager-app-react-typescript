@@ -57,7 +57,10 @@ const App = () => {
             path="/add"
             element={<AddExpense handleRefresh={handleRefresh} />}
           />
-          <Route path="/edit/:id" element={<EditExpense />} />
+          <Route
+            path="/edit/:id"
+            element={<EditExpense handleRefresh={handleRefresh} />}
+          />
           <Route path="/search" element={<SearchExpense />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Navigate to="/" />} />

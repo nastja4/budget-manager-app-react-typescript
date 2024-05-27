@@ -1,10 +1,15 @@
 import { useParams } from "react-router-dom";
 import ExpenseForm from "../expense-form/ExpenseForm";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_API_URL } from "../../utils/constants";
+import { Expense } from "../../types";
 
-const EditExpense = () => {
+interface EditExpenseProps {
+  handleRefresh: () => void;
+}
+
+const EditExpense: FC<EditExpenseProps> = ({ handleRefresh }) => {
   const [expense, setExpense] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -30,8 +35,18 @@ const EditExpense = () => {
     getExpense();
   }, [id]);
 
-  const handleSubmit = async (): Promise<boolean> => {
-    return true;
+  const handleSubmit = async (inputData: Expense): Promise<boolean> => {
+    try {
+      const { data } = await axios.patch(`${BASE_API_URL}/${id}`, {
+        ...inputData,
+      });
+      handleRefresh();
+      console.log("updated", data);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   };
 
   return (
