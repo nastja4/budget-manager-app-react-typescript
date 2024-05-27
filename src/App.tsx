@@ -50,6 +50,7 @@ const App = () => {
                 isLoading={isLoading}
                 expenses={expenses}
                 errorMsg={errorMsg}
+                handleRefresh={handleRefresh}
               />
             }
           />

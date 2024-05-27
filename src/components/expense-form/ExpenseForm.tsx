@@ -31,6 +31,7 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
       expense_amount,
       description,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const navigate = useNavigate();
