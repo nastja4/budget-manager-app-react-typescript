@@ -44,13 +44,12 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
         // reset for add expense
         reset();
       }
-
       setErrorMsg("");
       setSuccessMsg(`Expense ${expense ? "updated" : "added"} successfuly.`);
       setTimeout(() => {
         setSuccessMsg("");
         navigate("/");
-      }, 3000);
+      }, 2000);
       // console.log("success");
     } else {
       setSuccessMsg("");

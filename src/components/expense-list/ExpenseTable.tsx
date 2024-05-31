@@ -5,6 +5,11 @@ import "./ExpensesTable.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_API_URL } from "../../utils/constants";
+import {
+  getFormattedPrice,
+  getFormatttedDate,
+  getShortDescription,
+} from "../../utils/functions";
 
 interface ExpenseTableProps {
   expenses: Expense[];
@@ -58,12 +63,22 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
                 <tr key={id}>
                   <td>{index + 1}</td>
                   <td className="expense-item">{expense_type}</td>
-                  <td className="expense-item">{expense_date}</td>
-                  <td className="expense-item">{expense_amount}</td>
-                  <td className="expense-item">{description}</td>
+                  <td className="expense-item">
+                    {getFormatttedDate(expense_date)}
+                  </td>
+                  <td className="expense-item">
+                    {getFormattedPrice(expense_amount)}
+                  </td>
+                  <td className="expense-item" title={description}>
+                    {getShortDescription(description)}
+                  </td>
                   <td>
                     <Link to={`/edit/${id}`}>
-                      <Button variant="info" size="sm">
+                      <Button
+                        variant="info"
+                        size="sm"
+                        // className="button btn-edit"
+                      >
                         Edit
                       </Button>
                     </Link>
@@ -73,6 +88,7 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
                       variant="danger"
                       size="sm"
                       onClick={() => handleDelete(id)}
+                      // className="button btn-delete"
                     >
                       Delete
                     </Button>
