@@ -18,12 +18,15 @@ interface ExpenseTableProps {
 
 const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
   const [errorMsg, setErrorMsg] = useState("");
+  const [deleteIndex, setDeleteIndex] = useState(-1);
 
   const handleDelete = async (id: number) => {
-    console.log("id", id);
+    // console.log("id", id);
+    console.log("before");
     const shouldDelete = window.confirm(
       "Are you sure you want to delete this expense?"
     );
+    console.log("after");
     if (shouldDelete) {
       try {
         setErrorMsg("");
@@ -35,8 +38,11 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
         setErrorMsg("Error while deleting the expense. Try again.");
       }
     }
+    setDeleteIndex(-1);
     console.log("shouldDelete", shouldDelete);
   };
+
+  console.log("deleteIndex", deleteIndex);
 
   return (
     <>
@@ -60,7 +66,10 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
               index
             ) => {
               return (
-                <tr key={id}>
+                <tr
+                  key={id}
+                  className={`${id === deleteIndex ? "active" : ""}`}
+                >
                   <td>{index + 1}</td>
                   <td className="expense-item">{expense_type}</td>
                   <td className="expense-item">
@@ -87,6 +96,8 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
                     <Button
                       variant="danger"
                       size="sm"
+                      // setDeleteIndex(id) sets the deleteIndex to this id
+                      onMouseDown={() => setDeleteIndex(id)}
                       onClick={() => handleDelete(id)}
                       // className="button btn-delete"
                     >
