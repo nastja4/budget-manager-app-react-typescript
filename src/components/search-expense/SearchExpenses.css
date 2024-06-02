@@ -1,0 +1,17 @@
+.search-expenses {
+  max-width: 600px;
+  margin: 1rem auto 2rem auto;
+}
+
+.search-expenses .search-box {
+  margin: 0 auto;
+}
+
+.search-expenses .expense-type-ilter {
+  max-width: 200px;
+}
+
+.search-expenses .filters {
+  display: flex;
+  justify-content: space-between;
+}
