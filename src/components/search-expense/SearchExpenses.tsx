@@ -35,6 +35,41 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
     }
   };
 
+  const handleFilterChange = (selectedOption: {
+    type: string;
+    value: string;
+  }) => {
+    const { type, value } = selectedOption;
+    switch (type) {
+      case "expense_type":
+        if (value) {
+          setFilteredExpenses(
+            expenses.filter((expense) => expense.expense_type === value)
+          );
+        } else {
+          setFilteredExpenses(expenses);
+        }
+        break;
+      case "expense_date": {
+        const currentYear = new Date().getFullYear();
+        if (value) {
+          setFilteredExpenses(
+            expenses.filter((expense) =>
+              expense.expense_date.includes(
+                value === "current_year"
+                  ? `${currentYear}`
+                  : `${currentYear - 1}`
+              )
+            )
+          );
+        } else {
+          setFilteredExpenses(expenses);
+        }
+        break;
+      }
+    }
+  };
+
   return (
     <div>
       <div className="search-expenses">
@@ -53,7 +88,15 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
         <div className="filters">
           <div className="expense-type-filter">
             <Form.Label>Expense Type</Form.Label>
-            <Form.Select aria-label="Select Expense Type">
+            <Form.Select
+              aria-label="Select Expense Type"
+              onChange={(event) =>
+                handleFilterChange({
+                  type: "expense_type",
+                  value: event.target.value,
+                })
+              }
+            >
               <option value="">Select Expense Type</option>
               <option value="card">Card</option>
               <option value="cash">Cash</option>
@@ -61,7 +104,15 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
           </div>
           <div className="date-filter">
             <Form.Label>Expense Year</Form.Label>
-            <Form.Select aria-label="Select Year">
+            <Form.Select
+              aria-label="Select Year"
+              onChange={(event) =>
+                handleFilterChange({
+                  type: "expense_date",
+                  value: event.target.value,
+                })
+              }
+            >
               <option value="">Select Year</option>
               <option value="current_year">Current Year</option>
               <option value="previous_year">Previous Year</option>
@@ -69,7 +120,15 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
           </div>
           <div className="sort-filter">
             <Form.Label>Sort By</Form.Label>
-            <Form.Select aria-label="Select Sort By">
+            <Form.Select
+              aria-label="Select Sort By"
+              onChange={(event) =>
+                handleFilterChange({
+                  type: "sort_by",
+                  value: event.target.value,
+                })
+              }
+            >
               <option value="">Select Sort By</option>
               <option value="oldest_first">Oldest First</option>
               <option value="newest_first">Newest First</option>
