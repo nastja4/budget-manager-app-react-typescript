@@ -46,12 +46,26 @@
 .expense-list .button {
   letter-spacing: 1px;
   border-radius: 5px;
-  color: #000;
+  /* color: #000; */
+  color: white;
   border: none;
 }
 
 .expense-list .btn-delete {
-  background-color: #f1a6ad;
+  /* f1a6ad */
+  background-color: #b30000;
+  color: white;
+}
+
+.expense-list .btn-edit {
+  /* 9b85ff */
+  /* 481fff */
+  /* ! 8800c7 */
+  /* 006646 */
+  /* 006075 */
+  background-color: #006646;
+  color: white;
+  /* color: black; */
 }
 
 .expense-list .active > td {
@@ -59,9 +73,10 @@
 }
 
 .expense-list .active .button {
-  color: #000;
+  /* color: #000; */
+  /* color: white; */
 }
 
-.dark .expense-list .active .button {
+/* .dark .expense-list .active .button {
   color: #fff;
-}
+} */

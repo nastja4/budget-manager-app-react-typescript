@@ -86,7 +86,7 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
                       <Button
                         variant="info"
                         size="sm"
-                        // className="button btn-edit"
+                        className="button btn-edit"
                       >
                         Edit
                       </Button>
@@ -99,7 +99,7 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
                       // setDeleteIndex(id) sets the deleteIndex to this id
                       onMouseDown={() => setDeleteIndex(id)}
                       onClick={() => handleDelete(id)}
-                      // className="button btn-delete"
+                      className="button btn-delete"
                     >
                       Delete
                     </Button>

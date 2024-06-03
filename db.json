@@ -22,7 +22,7 @@
       "id": 4
     },
     {
-      "expense_type": "cash",
+      "expense_type": "card",
       "expense_date": "2023-11-22",
       "expense_amount": "15",
       "description": "Transport ticket",
