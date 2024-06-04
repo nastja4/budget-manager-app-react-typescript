@@ -27,6 +27,18 @@
       "expense_amount": "15",
       "description": "Transport ticket",
       "id": 5
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2024-06-04",
+      "expense_amount": "9",
+      "description": "Socks",
+      "id": 6
     }
-  ]
+  ],
+  "profile": {
+    "first_name": "Paul",
+    "last_name": "Schmidt",
+    "email": "paul.schmidt@example.com"
+  }
 }

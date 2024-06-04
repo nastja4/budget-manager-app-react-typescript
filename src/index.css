@@ -4,7 +4,8 @@
   font-weight: 400;
   /* my font color */
   color: #05014a;
-  --error-color: #b31919;
+  /* --error-color: #b31919; */
+  --error-color: #940000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,11 +23,9 @@
 body {
   /* d7c9c9 */
   /* ff7f50 */
-
-  /* #ff3787
-#ff4b37
-#ffaf37 */
-
+  /* #ff3787*/
+  /* #ff4b37 */
+  /* #ffaf37  */
   background-color: #ff7657;
 }
 
@@ -57,8 +56,25 @@ a {
 .error-msg {
   color: var(--error-color);
   letter-spacing: 1px;
-  margin-top: 4px;
-  font-size: 20px;
+  margin-top: 5px;
+  font-size: 18px;
+  background-color: #e7dbff; /* Background color */
+  display: inline-block;
+  padding: 6px 6px;
+  border-radius: 3px; /* Rounded corners */
+}
+
+.btn-success {
+  --bs-btn-color: #fff; /* Text color */
+  --bs-btn-bg: #006613; /* Background color */
+  --bs-btn-border-color: white; /* Border color */
+  --bs-btn-hover-color: #fff; /* Hover text color */
+  --bs-btn-hover-bg: #004f0e; /* Hover background color */
+  --bs-btn-hover-border-color: white; /* Hover border color */
+  --bs-btn-active-color: #fff; /* Active text color */
+  --bs-btn-active-bg: #006613; /* Active background color */
+  --bs-btn-active-border-color: white; /* Active border color */
+  --bs-btn-focus-shadow-rgb: 60, 153, 110; /* Focus shadow color */
 }
 
 .success-msg {

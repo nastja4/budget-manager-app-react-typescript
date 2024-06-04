@@ -30,7 +30,7 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
     if (shouldDelete) {
       try {
         setErrorMsg("");
-        const { data } = await axios.delete(`${BASE_API_URL}/${id}`);
+        const { data } = await axios.delete(`${BASE_API_URL}/expenses/${id}`);
         console.log("data", data);
         handleRefresh();
       } catch (error) {

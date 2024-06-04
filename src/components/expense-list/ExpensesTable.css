@@ -63,7 +63,8 @@
   /* ! 8800c7 */
   /* 006646 */
   /* 006075 */
-  background-color: #006646;
+  /* ! 481fff */
+  background-color: #5436d9;
   color: white;
   /* color: black; */
 }
@@ -72,10 +73,10 @@
   background-color: #d7c9c9;
 }
 
-.expense-list .active .button {
-  /* color: #000; */
-  /* color: white; */
-}
+/* .expense-list .active .button { */
+/* color: #000; */
+/* color: white; */
+/* } */
 
 /* .dark .expense-list .active .button {
   color: #fff;

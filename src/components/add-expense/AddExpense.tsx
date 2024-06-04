@@ -11,7 +11,9 @@ interface AddExpenseProps {
 const AddExpense: FC<AddExpenseProps> = ({ handleRefresh }) => {
   const handleSubmit = async (inputData: Expense): Promise<boolean> => {
     try {
-      const { data } = await axios.post(BASE_API_URL, { ...inputData });
+      const { data } = await axios.post(`${BASE_API_URL}/expenses`, {
+        ...inputData,
+      });
       console.log("posting", data);
       handleRefresh();
       return true;

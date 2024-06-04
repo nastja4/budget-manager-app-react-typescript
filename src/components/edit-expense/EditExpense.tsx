@@ -20,7 +20,7 @@ const EditExpense: FC<EditExpenseProps> = ({ handleRefresh }) => {
       try {
         setIsLoading(true);
         setErrorMsg("");
-        const { data } = await axios.get(`${BASE_API_URL}/${id}`);
+        const { data } = await axios.get(`${BASE_API_URL}/expenses/${id}`);
         setExpense(data);
         console.log("expense", data);
       } catch (error) {
@@ -37,9 +37,13 @@ const EditExpense: FC<EditExpenseProps> = ({ handleRefresh }) => {
 
   const handleSubmit = async (inputData: Expense): Promise<boolean> => {
     try {
-      const { data } = await axios.patch(`${BASE_API_URL}/${id}`, {
-        ...inputData,
-      });
+      const { data } = await axios.patch(
+        `${BASE_API_URL}/expa
+      enses/${id}`,
+        {
+          ...inputData,
+        }
+      );
       handleRefresh();
       console.log("updated", data);
       return true;

@@ -1,7 +1,6 @@
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Expense } from "../../types";
-import "./ExpenseForm.css";
 import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
