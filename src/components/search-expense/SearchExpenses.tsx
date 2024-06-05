@@ -7,11 +7,17 @@ import ExpenseTable from "../expense-list/ExpenseTable";
 interface SearchExpensesProps {
   expenses: Expense[];
   handleRefresh: () => void;
+  isLoading: boolean;
+  errorMsg: string;
 }
+
+// const sleep = () => new Promise((resolve) => setTimeout(resolve, 3000));
 
 const SearchExpenses: FC<SearchExpensesProps> = ({
   expenses,
   handleRefresh,
+  isLoading,
+  errorMsg,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredExpenses, setFilteredExpenses] = useState<Expense[]>([]);
@@ -195,7 +201,22 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
           </div>
         </div>
       </div>
-      <ExpenseTable expenses={filteredExpenses} handleRefresh={handleRefresh} />
+      {isLoading && <p className="loading">Loading...</p>}
+      <div className="parent-container">
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      </div>
+      {!isLoading &&
+        !errorMsg &&
+        (filteredExpenses.length > 0 ? (
+          <ExpenseTable
+            expenses={filteredExpenses}
+            handleRefresh={handleRefresh}
+          />
+        ) : (
+          <div className="parent-container">
+            <h4 className="error-msg">No matching expenses found.</h4>
+          </div>
+        ))}
     </div>
   );
 };

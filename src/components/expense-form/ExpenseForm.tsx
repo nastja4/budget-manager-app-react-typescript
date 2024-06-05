@@ -53,7 +53,9 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
     } else {
       setSuccessMsg("");
       setErrorMsg(
-        `Error while ${expense ? "updating" : "adding"} expense. Try again.`
+        `Error while ${
+          expense ? "updating" : "adding"
+        } expense. Try again later.`
       );
       // console.log("failure");
     }
@@ -62,7 +64,9 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       {successMsg && <p className="success-msg">{successMsg}</p>}
-      {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      <div className="parent-container">
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      </div>
 
       <Form.Group className="mb-3" controlId="expense_type">
         <Form.Label>Expense Type</Form.Label>

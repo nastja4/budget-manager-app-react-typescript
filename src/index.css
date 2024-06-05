@@ -60,8 +60,14 @@ a {
   font-size: 18px;
   background-color: #e7dbff; /* Background color */
   display: inline-block;
-  padding: 6px 6px;
-  border-radius: 3px; /* Rounded corners */
+  padding: 6px 10px;
+  border-radius: 10px; /* Rounded corners */
+  /* border: 1px solid var(--error-color); */
+}
+
+.parent-container {
+  display: flex;
+  justify-content: center;
 }
 
 .btn-success {

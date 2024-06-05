@@ -26,7 +26,9 @@ const Profile = () => {
         setProfileInfo(data);
         console.log("data", data);
       } catch (error) {
-        setErrorMsg("Error while getting profileinformation. Try again later.");
+        setErrorMsg(
+          "Error while getting profile information. Try again later."
+        );
       } finally {
         setIsLoading(false);
       }
@@ -62,7 +64,10 @@ const Profile = () => {
     <div className="main-content">
       <h2 className="my-3 text-center">Profile</h2>
       {isLoading && <p className="loading">Loading...</p>}
-      {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      <div className="parent-container">
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      </div>
+
       {successMsg && <p className="success-msg">{successMsg}</p>}
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="first_name">

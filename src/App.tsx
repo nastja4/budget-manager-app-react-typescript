@@ -10,6 +10,8 @@ import axios from "axios";
 import { BASE_API_URL } from "./utils/constants";
 import EditExpense from "./components/edit-expense/EditExpense";
 
+// const sleep = () => new Promise((resolve) => setTimeout(resolve, 3000));
+
 const App = () => {
   const [expenses, setExpenses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,12 +23,14 @@ const App = () => {
       try {
         setIsLoading(true);
         setErrorMsg("");
+        // await sleep();
+        // throw new Error();
         const { data } = await axios.get(`${BASE_API_URL}/expenses`);
         console.log(data);
         setExpenses(data);
       } catch (error) {
         console.log(error);
-        setErrorMsg("Something went wrong. Try again later.");
+        setErrorMsg("Error while getting list of expenses. Try again later.");
       } finally {
         setIsLoading(false);
       }
@@ -66,6 +70,8 @@ const App = () => {
             path="/search"
             element={
               <SearchExpenses
+                isLoading={isLoading}
+                errorMsg={errorMsg}
                 expenses={expenses}
                 handleRefresh={handleRefresh}
               />

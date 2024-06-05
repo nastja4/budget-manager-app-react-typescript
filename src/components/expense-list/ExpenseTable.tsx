@@ -46,7 +46,9 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
 
   return (
     <>
-      {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      <div className="parent-container">
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      </div>
       <Table striped bordered hover responsive className="expense-list">
         <thead>
           <tr>

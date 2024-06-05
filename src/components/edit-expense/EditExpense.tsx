@@ -37,13 +37,9 @@ const EditExpense: FC<EditExpenseProps> = ({ handleRefresh }) => {
 
   const handleSubmit = async (inputData: Expense): Promise<boolean> => {
     try {
-      const { data } = await axios.patch(
-        `${BASE_API_URL}/expa
-      enses/${id}`,
-        {
-          ...inputData,
-        }
-      );
+      const { data } = await axios.patch(`${BASE_API_URL}/expenses/${id}`, {
+        ...inputData,
+      });
       handleRefresh();
       console.log("updated", data);
       return true;
@@ -57,7 +53,10 @@ const EditExpense: FC<EditExpenseProps> = ({ handleRefresh }) => {
     <div className="main-content">
       <h2 className="my-3 text-center">Edit Expense</h2>
       {isLoading && <p className="loading">Loading...</p>}
-      {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      <div className="parent-container">
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      </div>
+
       <ExpenseForm onSubmitForm={handleSubmit} expense={expense} />
     </div>
   );

@@ -19,11 +19,20 @@ const ExpenseList: FC<ExpenseListProps> = ({
     <div className="main-content">
       <h2 className="my-3 text-center">Expense List</h2>
       {isLoading && <p className="loading">Loading...</p>}
-      {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      <div className="parent-container">
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      </div>
+
       {expenses.length > 0 ? (
         <ExpenseTable expenses={expenses} handleRefresh={handleRefresh} />
       ) : (
-        <h4 className="error-msg">No matching expenses found.</h4>
+        // if isLoading is false and errorMsg is false, then the div containing the message "No matching expenses found." will be rendered
+        !isLoading &&
+        !errorMsg && (
+          <div className="parent-container">
+            <h4 className="error-msg">No matching expenses found.</h4>
+          </div>
+        )
       )}
     </div>
   );
