@@ -1,0 +1,8 @@
+.register-section {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.register-section .title {
+  margin-bottom: 5rem;
+}

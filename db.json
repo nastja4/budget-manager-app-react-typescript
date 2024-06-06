@@ -19,5 +19,17 @@
     "first_name": "Paul",
     "last_name": "Schmidt",
     "email": "paul.schmidt@example.com"
-  }
+  },
+  "users": [
+    {
+      "email": "mike@mike.com",
+      "password": "mike123",
+      "id": 2
+    },
+    {
+      "email": "anna@anna.com",
+      "password": "anna123",
+      "id": 3
+    }
+  ]
 }

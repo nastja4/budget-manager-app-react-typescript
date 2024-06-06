@@ -56,7 +56,7 @@ a {
 .error-msg {
   color: var(--error-color);
   letter-spacing: 1px;
-  margin-top: 5px;
+  margin-top: 7px;
   font-size: 18px;
   background-color: #e7dbff; /* Background color */
   display: inline-block;
@@ -69,6 +69,30 @@ a {
   display: flex;
   justify-content: center;
 }
+
+.form-control:focus {
+  /* ff7657 */
+  /* d2c7ff */
+  box-shadow: 0 0 0 0.2rem #d2c7ff;
+  border-color: #481fff;
+}
+
+.form-select:focus {
+  box-shadow: 0 0 0 0.2rem #d2c7ff;
+  border-color: #481fff;
+}
+
+/* ! this works */
+/* .form-select option:checked {
+  background-color: #ffdddd;
+} */
+
+/* ! doesn't work */
+/* .form-select option:hover,
+.form-select option:focus {
+  background-color: #ffdddd;
+  color: red;
+} */
 
 .btn-success {
   --bs-btn-color: #fff; /* Text color */
