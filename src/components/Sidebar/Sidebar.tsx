@@ -1,13 +1,26 @@
-// import React from "react";
 import { AiFillHome } from "react-icons/ai";
 import { MdLibraryAdd } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import { IoMdPerson } from "react-icons/io";
 import { MdOutlineLogout } from "react-icons/md";
 import "./Sidebar.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { FC } from "react";
 
-const Sidebar = () => {
+interface SidebarProps {
+  setIsLoggedIn: (data: boolean) => void;
+}
+
+const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    // ! for now '/login' instead of '/'
+    // navigate("/login");
+    navigate("/");
+  };
+
   return (
     <ul className="list">
       <li className="list-item">
@@ -35,7 +48,9 @@ const Sidebar = () => {
         </NavLink>
       </li>
       <li className="list-item">
-        <Link to="/">
+        {/* ! for now '/login' instead of '/' */}
+        {/* <Link to="/login" onClick={handleLogout}> */}
+        <Link to="/" onClick={handleLogout}>
           <MdOutlineLogout size={25} />
           <div>Logout</div>
         </Link>

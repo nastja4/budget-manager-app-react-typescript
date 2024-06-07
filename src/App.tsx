@@ -10,6 +10,7 @@ import axios from "axios";
 import { BASE_API_URL } from "./utils/constants";
 import EditExpense from "./components/edit-expense/EditExpense";
 import Register from "./components/register/Register";
+import Login from "./components/login/Login";
 
 // const sleep = () => new Promise((resolve) => setTimeout(resolve, 3000));
 
@@ -83,6 +84,10 @@ const App = () => {
           <Route
             path="/register"
             element={<Register setIsLoggedIn={setIsLoggedIn} />}
+          />
+          <Route
+            path="/login"
+            element={<Login setIsLoggedIn={setIsLoggedIn} />}
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

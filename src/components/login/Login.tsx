@@ -1,57 +1,43 @@
 import { Button, Form } from "react-bootstrap";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import "./Register.css";
+import "./Login.css";
 import { UserProfile } from "../../types";
 import axios from "axios";
 import { BASE_API_URL } from "../../utils/constants";
 import { Link, useNavigate } from "react-router-dom";
 
-interface RegisterProps {
+interface LoginProps {
   setIsLoggedIn: (data: boolean) => void;
 }
 
-const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
+const Login: FC<LoginProps> = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
-  const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   const {
     register,
     handleSubmit,
-    reset,
-    // For password validation (comparison with c_password)
-    watch,
     formState: { errors },
   } = useForm<UserProfile>();
 
   const onSubmit = async (data: UserProfile) => {
     console.log("data", data);
     setErrorMsg("");
-    setSuccessMsg("");
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { c_password, ...rest } = data;
-      const { data: registeredUser } = await axios.post(
-        `${BASE_API_URL}/users`,
-        rest
+      const { data: response } = await axios.get(
+        `${BASE_API_URL}/users?email=${data.email}&password=${data.password}`
       );
-      setSuccessMsg("Registration is successfull.");
-      reset({
-        email: "",
-        password: "",
-        c_password: "",
-      });
-      setTimeout(() => {
-        setSuccessMsg("");
+      if (response.length > 0) {
         setIsLoggedIn(true);
         navigate("/");
-      }, 2000);
-      console.log("registeredUser", registeredUser);
+      } else {
+        setErrorMsg("Invalid login credentials.");
+      }
     } catch (error) {
       console.log(error);
-      setSuccessMsg("");
-      setErrorMsg("Error while registering user. Try again later.");
+      setErrorMsg("Error during login. Try again later.");
     }
   };
 
@@ -59,10 +45,9 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
 
   return (
     <div className="main-content">
-      <h2 className="my-3 text-center">Register</h2>
-      <div className="register-section">
+      <h2 className="my-3 text-center">Login</h2>
+      <div className="login-section">
         <Form onSubmit={handleSubmit(onSubmit)}>
-          {successMsg && <p className="success-msg">{successMsg}</p>}
           <div className="parent-container">
             {errorMsg && <p className="error-msg">{errorMsg}</p>}
           </div>
@@ -107,36 +92,14 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
             )}
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="c_password">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter your confirm password"
-              {...register("c_password", {
-                required: "Confirm password is required",
-                // Checking matching of passw and c_passw
-                validate: {
-                  match: (value) => {
-                    if (value !== watch("password")) {
-                      return "Password and confirm password do not match";
-                    }
-                  },
-                },
-              })}
-            />
-            {errors.c_password && (
-              <p className="error-msg">{errors.c_password.message}</p>
-            )}
-          </Form.Group>
-
           <Form.Group>
             <Button type="submit" variant="success">
-              Register
+              Login
             </Button>
-            <div className="mt-3 register-btn">
-              Already have an account?{" "}
-              <Link to="/login" className="login-link">
-                Login here
+            <div className="mt-3" register-btn>
+              Don't have an account yet?{" "}
+              <Link to="/register" className="login-link">
+                Register here
               </Link>
             </div>
           </Form.Group>
@@ -146,4 +109,4 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
   );
 };
 
-export default Register;
+export default Login;
