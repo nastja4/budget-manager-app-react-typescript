@@ -94,6 +94,11 @@ a {
   color: red;
 } */
 
+.login-link {
+  color: white;
+  font-weight: bold;
+}
+
 .btn-success {
   --bs-btn-color: #fff; /* Text color */
   --bs-btn-bg: #006613; /* Background color */

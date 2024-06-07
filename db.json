@@ -22,14 +22,9 @@
   },
   "users": [
     {
-      "email": "mike@mike.com",
-      "password": "mike123",
-      "id": 2
-    },
-    {
-      "email": "anna@anna.com",
-      "password": "anna123",
-      "id": 3
+      "email": "test@example.com",
+      "password": "test123",
+      "id": 1
     }
   ]
 }

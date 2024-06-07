@@ -5,7 +5,7 @@ import "./Register.css";
 import { UserProfile } from "../../types";
 import axios from "axios";
 import { BASE_API_URL } from "../../utils/constants";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface RegisterProps {
   setIsLoggedIn: (data: boolean) => void;
@@ -20,6 +20,8 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
     register,
     handleSubmit,
     reset,
+    // For password validation (comparison with c_password)
+    watch,
     formState: { errors },
   } = useForm<UserProfile>();
 
@@ -70,28 +72,38 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
             <Form.Control
               type="email"
               {...register("email", {
-                required: true,
-                pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                required: "Email is required",
+                pattern: {
+                  value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                  message: "Email is not valid",
+                },
               })}
               placeholder="Enter your email"
             />
-            {errors.email && errors.email.type === "required" && (
-              <p className="error-msg">Email is required</p>
+            {errors.email && (
+              <p className="error-msg">{errors.email.message}</p>
             )}
-            {errors.email && errors.email.type === "pattern" && (
+            {/* {errors.email && errors.email.type === "pattern" && (
               <p className="error-msg">Email is not valid</p>
-            )}
+            )} */}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              {...register("password", { required: true })}
+              {...register("password", {
+                required: "Password is required",
+                // Passw validation
+                minLength: {
+                  value: 6,
+                  message: "Password should be at least 6 characters",
+                },
+              })}
               placeholder="Enter your password"
             />
             {errors.password && (
-              <p className="error-msg">Password is required</p>
+              <p className="error-msg">{errors.password.message}</p>
             )}
           </Form.Group>
 
@@ -100,10 +112,20 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
             <Form.Control
               type="text"
               placeholder="Enter your confirm password"
-              {...register("c_password", { required: true })}
+              {...register("c_password", {
+                required: "Confirm password is required",
+                // Checking matching of passw and c_passw
+                validate: {
+                  match: (value) => {
+                    if (value !== watch("password")) {
+                      return "Password and confirm password do not match";
+                    }
+                  },
+                },
+              })}
             />
             {errors.c_password && (
-              <p className="error-msg">Confirm password is required</p>
+              <p className="error-msg">{errors.c_password.message}</p>
             )}
           </Form.Group>
 
@@ -111,6 +133,12 @@ const Register: FC<RegisterProps> = ({ setIsLoggedIn }) => {
             <Button type="submit" variant="success">
               Register
             </Button>
+            <div className="mt-3" register-btn>
+              Already have an account?{" "}
+              <Link to="/login" className="login-link">
+                Login here
+              </Link>
+            </div>
           </Form.Group>
         </Form>
       </div>
