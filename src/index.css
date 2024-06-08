@@ -3,7 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
   /* my font color */
-  color: #05014a;
+  /* 05014a */
+  color: #21ce4c;
   /* --error-color: #b31919; */
   --error-color: #940000;
 
@@ -27,6 +28,9 @@ body {
   /* #ff4b37 */
   /* #ffaf37  */
   background-color: #ff7657;
+  /* my font color */
+  /* 05014a */
+  color: #05014a;
 }
 
 a {

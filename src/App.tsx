@@ -11,6 +11,7 @@ import { BASE_API_URL } from "./utils/constants";
 import EditExpense from "./components/edit-expense/EditExpense";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
+import useLocalStorage from "./custom-hooks/useLocalStorage";
 
 // const sleep = () => new Promise((resolve) => setTimeout(resolve, 3000));
 
@@ -19,7 +20,8 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [refresh, setRefresh] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useLocalStorage("isLoggedIn", false);
 
   useEffect(() => {
     const getExpenses = async () => {
