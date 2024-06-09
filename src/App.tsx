@@ -12,6 +12,7 @@ import EditExpense from "./components/edit-expense/EditExpense";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import useLocalStorage from "./custom-hooks/useLocalStorage";
+import PrivateRoute from "./components/private-route/PrivateRoute";
 
 // const sleep = () => new Promise((resolve) => setTimeout(resolve, 3000));
 
@@ -50,46 +51,81 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Layout isLoggedIn={isLoggedIn}>
+      <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
         <Routes>
           <Route
             path="/"
             element={
-              <ExpenseList
-                isLoading={isLoading}
-                expenses={expenses}
-                errorMsg={errorMsg}
-                handleRefresh={handleRefresh}
-              />
+              isLoggedIn ? (
+                <ExpenseList
+                  isLoading={isLoading}
+                  expenses={expenses}
+                  errorMsg={errorMsg}
+                  handleRefresh={handleRefresh}
+                />
+              ) : (
+                <Login setIsLoggedIn={setIsLoggedIn} />
+              )
             }
           />
           <Route
             path="/add"
-            element={<AddExpense handleRefresh={handleRefresh} />}
+            element={
+              isLoggedIn ? (
+                <AddExpense handleRefresh={handleRefresh} />
+              ) : (
+                <Login setIsLoggedIn={setIsLoggedIn} />
+              )
+            }
           />
           <Route
             path="/edit/:id"
-            element={<EditExpense handleRefresh={handleRefresh} />}
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <EditExpense handleRefresh={handleRefresh} />
+              </PrivateRoute>
+            }
           />
           <Route
             path="/search"
             element={
-              <SearchExpenses
-                isLoading={isLoading}
-                errorMsg={errorMsg}
-                expenses={expenses}
-                handleRefresh={handleRefresh}
-              />
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <SearchExpenses
+                  isLoading={isLoading}
+                  errorMsg={errorMsg}
+                  expenses={expenses}
+                  handleRefresh={handleRefresh}
+                />
+              </PrivateRoute>
             }
           />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <Profile />{" "}
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/register"
-            element={<Register setIsLoggedIn={setIsLoggedIn} />}
+            element={
+              !isLoggedIn ? (
+                <Register setIsLoggedIn={setIsLoggedIn} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
           />
           <Route
             path="/login"
-            element={<Login setIsLoggedIn={setIsLoggedIn} />}
+            element={
+              !isLoading ? (
+                <Login setIsLoggedIn={setIsLoggedIn} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

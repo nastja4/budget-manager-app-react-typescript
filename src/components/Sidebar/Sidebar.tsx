@@ -16,8 +16,6 @@ const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn }) => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    // ! for now '/login' instead of '/'
-    // navigate("/login");
     navigate("/");
   };
 
@@ -48,8 +46,6 @@ const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn }) => {
         </NavLink>
       </li>
       <li className="list-item">
-        {/* ! for now '/login' instead of '/' */}
-        {/* <Link to="/login" onClick={handleLogout}> */}
         <Link to="/" onClick={handleLogout}>
           <MdOutlineLogout size={25} />
           <div>Logout</div>
