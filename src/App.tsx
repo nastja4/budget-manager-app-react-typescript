@@ -1,20 +1,33 @@
-// import React from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout";
-import ExpenseList from "./components/expense-list/ExpenseList";
-import AddExpense from "./components/add-expense/AddExpense";
-import SearchExpenses from "./components/search-expense/SearchExpenses";
-import Profile from "./components/profile/Profile";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import { BASE_API_URL } from "./utils/constants";
-import EditExpense from "./components/edit-expense/EditExpense";
-import Register from "./components/register/Register";
-import Login from "./components/login/Login";
-import useLocalStorage from "./custom-hooks/useLocalStorage";
-import PrivateRoute from "./components/private-route/PrivateRoute";
+// import Layout from "./components/Layout";
+// import ExpenseList from "./components/expense-list/ExpenseList";
+// import AddExpense from "./components/add-expense/AddExpense";
+// import EditExpense from "./components/edit-expense/EditExpense";
+// import Login from "./components/login/Login";
+// import PrivateRoute from "./components/private-route/PrivateRoute";
+// import Profile from "./components/profile/Profile";
+// import Register from "./components/register/Register";
+// import SearchExpenses from "./components/search-expense/SearchExpenses";
 
-// const sleep = () => new Promise((resolve) => setTimeout(resolve, 3000));
+// lazy allows to split the code and load components dynamically as they are needed (reducing the initial load time)
+const Layout = lazy(() => import("./components/Layout"));
+const ExpenseList = lazy(() => import("./components/expense-list/ExpenseList"));
+const AddExpense = lazy(() => import("./components/add-expense/AddExpense"));
+const EditExpense = lazy(() => import("./components/edit-expense/EditExpense"));
+const Login = lazy(() => import("./components/login/Login"));
+const PrivateRoute = lazy(
+  () => import("./components/private-route/PrivateRoute")
+);
+const Profile = lazy(() => import("./components/profile/Profile"));
+const Register = lazy(() => import("./components/register/Register"));
+const SearchExpenses = lazy(
+  () => import("./components/search-expense/SearchExpenses")
+);
+
+import useLocalStorage from "./custom-hooks/useLocalStorage";
+import { BASE_API_URL } from "./utils/constants";
 
 const App = () => {
   const [expenses, setExpenses] = useState([]);
@@ -29,8 +42,6 @@ const App = () => {
       try {
         setIsLoading(true);
         setErrorMsg("");
-        // await sleep();
-        // throw new Error();
         const { data } = await axios.get(`${BASE_API_URL}/expenses`);
         console.log(data);
         setExpenses(data);
@@ -51,85 +62,87 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              isLoggedIn ? (
-                <ExpenseList
-                  isLoading={isLoading}
-                  expenses={expenses}
-                  errorMsg={errorMsg}
-                  handleRefresh={handleRefresh}
-                />
-              ) : (
-                <Login setIsLoggedIn={setIsLoggedIn} />
-              )
-            }
-          />
-          <Route
-            path="/add"
-            element={
-              isLoggedIn ? (
-                <AddExpense handleRefresh={handleRefresh} />
-              ) : (
-                <Login setIsLoggedIn={setIsLoggedIn} />
-              )
-            }
-          />
-          <Route
-            path="/edit/:id"
-            element={
-              <PrivateRoute isLoggedIn={isLoggedIn}>
-                <EditExpense handleRefresh={handleRefresh} />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/search"
-            element={
-              <PrivateRoute isLoggedIn={isLoggedIn}>
-                <SearchExpenses
-                  isLoading={isLoading}
-                  errorMsg={errorMsg}
-                  expenses={expenses}
-                  handleRefresh={handleRefresh}
-                />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute isLoggedIn={isLoggedIn}>
-                <Profile />{" "}
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              !isLoggedIn ? (
-                <Register setIsLoggedIn={setIsLoggedIn} />
-              ) : (
-                <Navigate to="/" />
-              )
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              !isLoading ? (
-                <Login setIsLoggedIn={setIsLoggedIn} />
-              ) : (
-                <Navigate to="/" />
-              )
-            }
-          />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </Layout>
+      <React.Suspense fallback={<p className="loading">Loading...</p>}>
+        <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                isLoggedIn ? (
+                  <ExpenseList
+                    isLoading={isLoading}
+                    expenses={expenses}
+                    errorMsg={errorMsg}
+                    handleRefresh={handleRefresh}
+                  />
+                ) : (
+                  <Login setIsLoggedIn={setIsLoggedIn} />
+                )
+              }
+            />
+            <Route
+              path="/add"
+              element={
+                isLoggedIn ? (
+                  <AddExpense handleRefresh={handleRefresh} />
+                ) : (
+                  <Login setIsLoggedIn={setIsLoggedIn} />
+                )
+              }
+            />
+            <Route
+              path="/edit/:id"
+              element={
+                <PrivateRoute isLoggedIn={isLoggedIn}>
+                  <EditExpense handleRefresh={handleRefresh} />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/search"
+              element={
+                <PrivateRoute isLoggedIn={isLoggedIn}>
+                  <SearchExpenses
+                    isLoading={isLoading}
+                    errorMsg={errorMsg}
+                    expenses={expenses}
+                    handleRefresh={handleRefresh}
+                  />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute isLoggedIn={isLoggedIn}>
+                  <Profile />{" "}
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                !isLoggedIn ? (
+                  <Register setIsLoggedIn={setIsLoggedIn} />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                !isLoading ? (
+                  <Login setIsLoggedIn={setIsLoggedIn} />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Layout>
+      </React.Suspense>
     </BrowserRouter>
   );
 };

@@ -103,15 +103,19 @@ a {
   font-weight: bold;
 }
 
+/* 006613 */
+/* 004f0e */
+/* 014a05 */
+/* ! 015105 */
 .btn-success {
   --bs-btn-color: #fff; /* Text color */
-  --bs-btn-bg: #006613; /* Background color */
+  --bs-btn-bg: #015105; /* Background color */
   --bs-btn-border-color: white; /* Border color */
   --bs-btn-hover-color: #fff; /* Hover text color */
-  --bs-btn-hover-bg: #004f0e; /* Hover background color */
+  --bs-btn-hover-bg: #013c04; /* Hover background color */
   --bs-btn-hover-border-color: white; /* Hover border color */
   --bs-btn-active-color: #fff; /* Active text color */
-  --bs-btn-active-bg: #006613; /* Active background color */
+  --bs-btn-active-bg: #015105; /* Active background color */
   --bs-btn-active-border-color: white; /* Active border color */
   --bs-btn-focus-shadow-rgb: 60, 153, 110; /* Focus shadow color */
 }
@@ -136,7 +140,29 @@ a {
 .right {
   flex: 10;
   /* d7c9c9 7657ff */
-  background-color: #481fff;
+  /* 050151 */
+  /* ! 481fff */
+  /* background-color: #481fff; */
+  /* background: linear-gradient(to bottom right, #05014a, #481fff); */
+  /* #05014a, #481fff */
+  /* 135deg */
+  background: linear-gradient(135deg, #05014a, #481fff);
+  /* background: radial-gradient(at bottom right, #481fff, #05014a); */
+  /* #050151,
+    #1f18a3,
+    #2e1ac2,
+    #3d1de0,
+    #481fff */
+  /* background: linear-gradient(
+    to bottom right,
+    #050151,
+    #080375,
+    #08017e,
+    #1209b6,
+    #481fff
+  ); */
+  /* background: radial-gradient(circle, #481fff, #050151); */
+
   padding: 10px;
   color: #fff;
 }
