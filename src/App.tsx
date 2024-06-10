@@ -1,31 +1,17 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import axios from "axios";
-// import Layout from "./components/Layout";
-// import ExpenseList from "./components/expense-list/ExpenseList";
-// import AddExpense from "./components/add-expense/AddExpense";
-// import EditExpense from "./components/edit-expense/EditExpense";
-// import Login from "./components/login/Login";
-// import PrivateRoute from "./components/private-route/PrivateRoute";
-// import Profile from "./components/profile/Profile";
-// import Register from "./components/register/Register";
-// import SearchExpenses from "./components/search-expense/SearchExpenses";
-
-// lazy allows to split the code and load components dynamically as they are needed (reducing the initial load time)
-const Layout = lazy(() => import("./components/Layout"));
-const ExpenseList = lazy(() => import("./components/expense-list/ExpenseList"));
-const AddExpense = lazy(() => import("./components/add-expense/AddExpense"));
-const EditExpense = lazy(() => import("./components/edit-expense/EditExpense"));
-const Login = lazy(() => import("./components/login/Login"));
-const PrivateRoute = lazy(
-  () => import("./components/private-route/PrivateRoute")
-);
-const Profile = lazy(() => import("./components/profile/Profile"));
-const Register = lazy(() => import("./components/register/Register"));
-const SearchExpenses = lazy(
-  () => import("./components/search-expense/SearchExpenses")
-);
-
+import {
+  AddExpense,
+  EditExpense,
+  ExpenseList,
+  Layout,
+  Login,
+  PrivateRoute,
+  Profile,
+  Register,
+  SearchExpenses,
+} from "./DynamicImports";
 import useLocalStorage from "./custom-hooks/useLocalStorage";
 import { BASE_API_URL } from "./utils/constants";
 
