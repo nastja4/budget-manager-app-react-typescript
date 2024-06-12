@@ -6,6 +6,8 @@ import { MdOutlineLogout } from "react-icons/md";
 import "./Sidebar.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FC } from "react";
+import { Button } from "react-bootstrap";
+import { useMode } from "../../custom-hooks/useMode";
 
 interface SidebarProps {
   setIsLoggedIn: (data: boolean) => void;
@@ -14,6 +16,9 @@ interface SidebarProps {
 const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
+  const { selectedMode, toggleMode } = useMode();
+
+  console.log("selectedMode", selectedMode);
   const handleLogout = () => {
     setIsLoggedIn(false);
     navigate("/");
@@ -50,6 +55,11 @@ const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn }) => {
           <MdOutlineLogout size={25} />
           <div>Logout</div>
         </Link>
+      </li>
+      <li className="list-item">
+        <Button variant="info" className="mode-toggle" onClick={toggleMode}>
+          Toggle Dark / Light Mode
+        </Button>
       </li>
     </ul>
   );

@@ -26,3 +26,23 @@
 .list-item .active {
   font-weight: bold;
 }
+
+.list-item .mode-toggle {
+  background-color: rgba(5, 1, 74, 0);
+  color: #05014a;
+  /* border: solid 1px #05014a; */
+  border: none;
+  box-shadow: 0 0 2px rgba(5, 1, 74, 1), 0 0 3px rgba(5, 1, 74, 0.8),
+    0 0 4px rgba(5, 1, 74, 0.6), 0 0 5px rgba(5, 1, 74, 0.4),
+    0 0 6px rgba(5, 1, 74, 0.2);
+}
+
+.list-item .mode-toggle:hover {
+  background-color: rgba(5, 1, 74, 0.05);
+}
+
+.list-item .mode-toggle:active {
+  background-color: #05014a;
+  color: #ff7657;
+  box-shadow: none;
+}

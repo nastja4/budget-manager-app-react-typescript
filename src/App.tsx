@@ -14,6 +14,7 @@ import {
 } from "./DynamicImports";
 import useLocalStorage from "./custom-hooks/useLocalStorage";
 import { BASE_API_URL } from "./utils/constants";
+import { ModeContextProvider } from "./context/ModeContext";
 
 const App = () => {
   const [expenses, setExpenses] = useState([]);
@@ -47,89 +48,92 @@ const App = () => {
   };
 
   return (
-    <BrowserRouter>
-      <React.Suspense fallback={<p className="loading">Loading...</p>}>
-        <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                isLoggedIn ? (
-                  <ExpenseList
-                    isLoading={isLoading}
-                    expenses={expenses}
-                    errorMsg={errorMsg}
-                    handleRefresh={handleRefresh}
-                  />
-                ) : (
-                  <Login setIsLoggedIn={setIsLoggedIn} />
-                )
-              }
-            />
-            <Route
-              path="/add"
-              element={
-                isLoggedIn ? (
-                  <AddExpense handleRefresh={handleRefresh} />
-                ) : (
-                  <Login setIsLoggedIn={setIsLoggedIn} />
-                )
-              }
-            />
-            <Route
-              path="/edit/:id"
-              element={
-                <PrivateRoute isLoggedIn={isLoggedIn}>
-                  <EditExpense handleRefresh={handleRefresh} />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/search"
-              element={
-                <PrivateRoute isLoggedIn={isLoggedIn}>
-                  <SearchExpenses
-                    isLoading={isLoading}
-                    errorMsg={errorMsg}
-                    expenses={expenses}
-                    handleRefresh={handleRefresh}
-                  />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute isLoggedIn={isLoggedIn}>
-                  <Profile />{" "}
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                !isLoggedIn ? (
-                  <Register setIsLoggedIn={setIsLoggedIn} />
-                ) : (
-                  <Navigate to="/" />
-                )
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                !isLoading ? (
-                  <Login setIsLoggedIn={setIsLoggedIn} />
-                ) : (
-                  <Navigate to="/" />
-                )
-              }
-            />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        </Layout>
-      </React.Suspense>
-    </BrowserRouter>
+    // React context is used to share data (the mode and the function to toggle it) across different components in the React tree without having to pass props manually at every level
+    <ModeContextProvider>
+      <BrowserRouter>
+        <React.Suspense fallback={<p className="loading">Loading...</p>}>
+          <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  isLoggedIn ? (
+                    <ExpenseList
+                      isLoading={isLoading}
+                      expenses={expenses}
+                      errorMsg={errorMsg}
+                      handleRefresh={handleRefresh}
+                    />
+                  ) : (
+                    <Login setIsLoggedIn={setIsLoggedIn} />
+                  )
+                }
+              />
+              <Route
+                path="/add"
+                element={
+                  isLoggedIn ? (
+                    <AddExpense handleRefresh={handleRefresh} />
+                  ) : (
+                    <Login setIsLoggedIn={setIsLoggedIn} />
+                  )
+                }
+              />
+              <Route
+                path="/edit/:id"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <EditExpense handleRefresh={handleRefresh} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/search"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <SearchExpenses
+                      isLoading={isLoading}
+                      errorMsg={errorMsg}
+                      expenses={expenses}
+                      handleRefresh={handleRefresh}
+                    />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <PrivateRoute isLoggedIn={isLoggedIn}>
+                    <Profile />{" "}
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  !isLoggedIn ? (
+                    <Register setIsLoggedIn={setIsLoggedIn} />
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  !isLoading ? (
+                    <Login setIsLoggedIn={setIsLoggedIn} />
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
+              />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </Layout>
+        </React.Suspense>
+      </BrowserRouter>
+    </ModeContextProvider>
   );
 };
 

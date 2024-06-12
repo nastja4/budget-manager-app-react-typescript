@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 const useLocalStorage = (key: string, initialValue: boolean) => {
   const [value, setValue] = useState(() => {
     try {
-      console.log("inside");
       const localValue = window.localStorage.getItem(key);
       return localValue ? JSON.parse(localValue) : initialValue;
     } catch (error) {

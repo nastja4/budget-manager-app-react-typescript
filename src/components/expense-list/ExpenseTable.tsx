@@ -39,10 +39,10 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
       }
     }
     setDeleteIndex(-1);
-    console.log("shouldDelete", shouldDelete);
+    // console.log("shouldDelete", shouldDelete);
   };
 
-  console.log("deleteIndex", deleteIndex);
+  // console.log("deleteIndex", deleteIndex);
 
   return (
     <>
