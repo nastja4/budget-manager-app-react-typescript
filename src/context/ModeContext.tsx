@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 
-type Mode = "light" | "dark";
+export type Mode = "light" | "dark";
 
 type ModeContext = {
   selectedMode: Mode;
@@ -11,15 +11,25 @@ const ModeContext = React.createContext<ModeContext | null>(null);
 
 export default ModeContext;
 
-export const ModeContextProvider = ({
-  children,
-}: {
+type ModeContextProviderProps = {
   children: React.ReactNode;
+  selectedTheme: Mode;
+  setSelectedTheme: (theme: Mode) => void;
+};
+
+export const ModeContextProvider: FC<ModeContextProviderProps> = ({
+  children,
+  selectedTheme,
+  setSelectedTheme,
 }) => {
-  const [selectedMode, setSelectedMode] = useState<Mode>("light");
+  const [selectedMode, setSelectedMode] = useState<Mode>(
+    selectedTheme || "light"
+  );
 
   const toggleMode = () => {
-    setSelectedMode(selectedMode === "light" ? "dark" : "light");
+    const mode = selectedMode === "light" ? "dark" : "light";
+    setSelectedMode(mode);
+    setSelectedTheme(mode);
   };
   return (
     <ModeContext.Provider value={{ selectedMode, toggleMode }}>

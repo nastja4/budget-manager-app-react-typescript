@@ -23,6 +23,10 @@ const App = () => {
   const [refresh, setRefresh] = useState(false);
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useLocalStorage("isLoggedIn", false);
+  const [selectedTheme, setSelectedTheme] = useLocalStorage(
+    "selectedTheme",
+    "light"
+  );
 
   useEffect(() => {
     const getExpenses = async () => {
@@ -49,7 +53,10 @@ const App = () => {
 
   return (
     // React context is used to share data (the mode and the function to toggle it) across different components in the React tree without having to pass props manually at every level
-    <ModeContextProvider>
+    <ModeContextProvider
+      selectedTheme={selectedTheme}
+      setSelectedTheme={setSelectedTheme}
+    >
       <BrowserRouter>
         <React.Suspense fallback={<p className="loading">Loading...</p>}>
           <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>

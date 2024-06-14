@@ -127,7 +127,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
   };
 
   return (
-    <div>
+    <>
       <div className="search-expenses">
         <h2 className="my-3 text-center">Search Expenses</h2>
         <div className="search-box">
@@ -217,7 +217,7 @@ const SearchExpenses: FC<SearchExpensesProps> = ({
             <h4 className="error-msg">No matching expenses found.</h4>
           </div>
         ))}
-    </div>
+    </>
   );
 };
 

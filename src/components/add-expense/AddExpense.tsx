@@ -25,7 +25,7 @@ const AddExpense: FC<AddExpenseProps> = ({ handleRefresh }) => {
 
   return (
     <div className="main-content">
-      <h2 className="my-2 text-center">Add Expense</h2>
+      <h2 className="my-3 text-center">Add Expense</h2>
       <ExpenseForm onSubmitForm={handleSubmit} />
     </div>
   );

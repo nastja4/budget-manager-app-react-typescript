@@ -137,6 +137,10 @@ a {
   flex: 2;
 }
 
+.left.dark {
+  border-right: 1px solid #fff;
+}
+
 .right {
   flex: 10;
   background: linear-gradient(135deg, #05014a, #481fff);
@@ -164,12 +168,9 @@ a {
   z-index: -1;
 } */
 
-.light {
-  color: #000;
-}
-
 .dark {
   color: #fff;
+  background: none;
   background-color: #000;
 }
 
@@ -213,13 +214,13 @@ a {
     font-size: 25px;
   }
 
-  .left {
+  /* .left {
     flex: 1;
   }
 
   .right {
     flex: 11;
-  }
+  } */
 
   .main .list {
     display: flex;

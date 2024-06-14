@@ -1,7 +1,7 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
+import { Mode } from "../context/ModeContext";
 
-const useLocalStorage = (key: string, initialValue: boolean) => {
+const useLocalStorage = (key: string, initialValue: boolean | Mode) => {
   const [value, setValue] = useState(() => {
     try {
       const localValue = window.localStorage.getItem(key);

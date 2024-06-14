@@ -48,7 +48,6 @@
 .expense-list .button {
   letter-spacing: 1px;
   border-radius: 5px;
-  /* color: #000; */
   color: white;
   border: none;
 }
@@ -57,29 +56,21 @@
   /* f1a6ad */
   background-color: #b30000;
   color: white;
+  --bs-btn-active-bg: #b30000;
 }
 
-.expense-list .btn-edit {
-  /* 9b85ff */
-  /* 481fff */
-  /* ! 8800c7 */
-  /* 006646 */
-  /* 006075 */
-  /* ! 481fff */
-  background-color: #5436d9;
-  color: white;
-  /* color: black; */
+.btn-delete:hover {
+  background-color: #8f0000;
+}
+
+.expense-list .btn-info {
+  --bs-btn-bg: #5436d9;
+  --bs-btn-hover-bg: #3e23b8;
+  --bs-btn-focus-shadow-rgb: 11, 172, 204;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #5436d9;
 }
 
 .expense-list .active > td {
   background-color: #d7c9c9;
 }
-
-/* .expense-list .active .button { */
-/* color: #000; */
-/* color: white; */
-/* } */
-
-/* .dark .expense-list .active .button {
-  color: #fff;
-} */
