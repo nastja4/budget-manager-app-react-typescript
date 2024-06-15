@@ -4,7 +4,7 @@ import { IoSearch } from "react-icons/io5";
 import { IoMdPerson } from "react-icons/io";
 import { MdOutlineLogout } from "react-icons/md";
 import "./Sidebar.css";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FC } from "react";
 import { Button } from "react-bootstrap";
 import { useMode } from "../../custom-hooks/useMode";
@@ -15,6 +15,8 @@ interface SidebarProps {
 
 const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  console.log("location_sidebar", state);
 
   const { selectedMode, toggleMode } = useMode();
 
@@ -27,7 +29,7 @@ const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn }) => {
   return (
     <ul className="list">
       <li className="list-item">
-        <NavLink to="/">
+        <NavLink to="/" className={state === "/" ? "active" : ""}>
           <AiFillHome size={25} />
           <div>Dashboard</div>
         </NavLink>
@@ -39,7 +41,7 @@ const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn }) => {
         </NavLink>
       </li>
       <li className="list-item">
-        <NavLink to="/search">
+        <NavLink to="/search" className={state === "/search" ? "active" : ""}>
           <IoSearch size={25} />
           <div>Search Expense</div>
         </NavLink>

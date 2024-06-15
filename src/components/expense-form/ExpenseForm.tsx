@@ -2,7 +2,7 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Expense } from "../../types";
 import { FC, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface ExpenseFormProps {
   onSubmitForm: (inputData: Expense) => Promise<boolean>;
@@ -19,6 +19,8 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
     reset,
     formState: { errors },
   } = useForm<Expense>();
+
+  const { state } = useLocation();
 
   const { id, expense_type, expense_date, expense_amount, description } =
     expense || {};
@@ -47,7 +49,11 @@ const ExpenseForm: FC<ExpenseFormProps> = ({ onSubmitForm, expense }) => {
       setSuccessMsg(`Expense ${expense ? "updated" : "added"} successfuly.`);
       setTimeout(() => {
         setSuccessMsg("");
-        navigate("/");
+        if (state === "/search") {
+          navigate("/search");
+        } else {
+          navigate("/");
+        }
       }, 2000);
       // console.log("success");
     } else {

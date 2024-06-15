@@ -3,7 +3,7 @@
     {
       "expense_type": "card",
       "expense_date": "2024-06-05",
-      "expense_amount": "105",
+      "expense_amount": "129",
       "description": "Shoes",
       "id": 1
     },
@@ -13,6 +13,13 @@
       "expense_amount": "10",
       "description": "Lamp purchase",
       "id": 2
+    },
+    {
+      "expense_type": "cash",
+      "expense_date": "2024-06-14",
+      "expense_amount": "10",
+      "description": "Breakfast",
+      "id": 3
     }
   ],
   "profile": {

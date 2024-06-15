@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { Expense } from "../../types";
 import { Button, Table } from "react-bootstrap";
 import "./ExpensesTable.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { BASE_API_URL } from "../../utils/constants";
 import {
@@ -19,6 +19,8 @@ interface ExpenseTableProps {
 const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [deleteIndex, setDeleteIndex] = useState(-1);
+  const { pathname } = useLocation();
+  console.log("pathname", pathname);
 
   const handleDelete = async (id: number) => {
     // console.log("id", id);
@@ -84,7 +86,7 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
                     {getShortDescription(description)}
                   </td>
                   <td>
-                    <Link to={`/edit/${id}`}>
+                    <Link to={`/edit/${id}`} state={pathname}>
                       <Button
                         variant="info"
                         size="sm"
