@@ -4,8 +4,6 @@
   font-weight: 400;
   /* my font color */
   /* 05014a */
-  color: #21ce4c;
-  /* --error-color: #b31919; */
   --error-color: #940000;
 
   font-synthesis: none;
@@ -22,15 +20,8 @@
 }
 
 body {
-  /* d7c9c9 */
-  /* ff7f50 */
-  /* #ff3787*/
-  /* #ff4b37 */
-  /* #ffaf37  */
-  background-color: #ff7657;
-  /* my font color */
-  /* 05014a */
-  color: #05014a;
+  background-color: #05014a;
+  color: #fff;
 }
 
 a {
@@ -66,7 +57,6 @@ a {
   display: inline-block;
   padding: 6px 10px;
   border-radius: 10px;
-  /* border: 1px solid var(--error-color); */
 }
 
 .parent-container {
@@ -75,49 +65,31 @@ a {
 }
 
 .form-control:focus {
-  /* ff7657 */
-  /* d2c7ff */
   box-shadow: 0 0 0 0.2rem #d2c7ff;
-  border-color: #481fff;
+  border-color: #05014a;
 }
 
 .form-select:focus {
   box-shadow: 0 0 0 0.2rem #d2c7ff;
-  border-color: #481fff;
+  border-color: #05014a;
 }
-
-/* ! this works */
-/* .form-select option:checked {
-  background-color: #ffdddd;
-} */
-
-/* ! doesn't work */
-/* .form-select option:hover,
-.form-select option:focus {
-  background-color: #ffdddd;
-  color: red;
-} */
 
 .login-link {
   color: white;
   font-weight: bold;
 }
 
-/* 006613 */
-/* 004f0e */
-/* 014a05 */
-/* ! 015105 */
 .btn-success {
-  --bs-btn-color: #fff; /* Text color */
-  --bs-btn-bg: #015105; /* Background color */
-  --bs-btn-border-color: white; /* Border color */
-  --bs-btn-hover-color: #fff; /* Hover text color */
-  --bs-btn-hover-bg: #013c04; /* Hover background color */
-  --bs-btn-hover-border-color: white; /* Hover border color */
-  --bs-btn-active-color: #fff; /* Active text color */
-  --bs-btn-active-bg: #015105; /* Active background color */
-  --bs-btn-active-border-color: white; /* Active border color */
-  --bs-btn-focus-shadow-rgb: 60, 153, 110; /* Focus shadow color */
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #015105;
+  --bs-btn-border-color: white;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #013c04;
+  --bs-btn-hover-border-color: white;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #015105;
+  --bs-btn-active-border-color: white;
+  --bs-btn-focus-shadow-rgb: 60, 153, 110;
 }
 
 .success-msg {
@@ -135,6 +107,8 @@ a {
 
 .left {
   flex: 2;
+  background-color: #ff7657;
+  color: #05014a;
 }
 
 .left.dark {
@@ -144,29 +118,9 @@ a {
 .right {
   flex: 10;
   background: linear-gradient(135deg, #05014a, #481fff);
-  /* background: radial-gradient(at bottom right, #481fff, #05014a); */
   padding: 10px;
   color: #fff;
-
-  /* position: relative;
-  display: flex; */
 }
-
-/* Bg-img behind the content, using the relative path */
-/* background-image: url("./assets/money-img.png"); */
-/* .background-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
- 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.5;
-  z-index: -1;
-} */
 
 .dark {
   color: #fff;
@@ -182,14 +136,24 @@ a {
 
 /* menu styling starts */
 
-.hamburger-menu,
+.hamburger-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: none;
+  cursor: pointer;
+  color: #fff;
+}
+
 .close-menu {
   position: absolute;
   top: 20px;
   right: 20px;
   display: none;
   cursor: pointer;
+  color: #05014a;
 }
+
 /* menu styling ends */
 
 @media screen and (max-width: 768px) {
@@ -198,7 +162,7 @@ a {
   }
 
   .hamburger-menu {
-    display: block;
+    display: flex;
   }
 
   .close-menu {
@@ -214,15 +178,18 @@ a {
     font-size: 25px;
   }
 
-  /* .left {
-    flex: 1;
+  .left {
+    /* flex: 1; */
+    flex: 0;
   }
 
   .right {
     flex: 11;
-  } */
+    padding-top: 30px;
+  }
 
   .main .list {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -245,5 +212,9 @@ a {
     position: absolute;
     width: 100%;
     min-height: 100vh;
+  }
+
+  .dark .close-menu {
+    fill: white;
   }
 }

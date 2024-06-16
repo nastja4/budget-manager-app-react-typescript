@@ -11,9 +11,10 @@ import { useMode } from "../../custom-hooks/useMode";
 
 interface SidebarProps {
   setIsLoggedIn: (data: boolean) => void;
+  toggleMenu: () => void;
 }
 
-const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn }) => {
+const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn, toggleMenu }) => {
   const navigate = useNavigate();
   const { state } = useLocation();
   console.log("location_sidebar", state);
@@ -27,34 +28,34 @@ const Sidebar: FC<SidebarProps> = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <ul className="list">
+    <ul className="list" onClick={toggleMenu}>
       <li className="list-item">
         <NavLink to="/" className={state === "/" ? "active" : ""}>
-          <AiFillHome size={25} />
+          <AiFillHome size={25} className="icon" />
           <div>Dashboard</div>
         </NavLink>
       </li>
       <li className="list-item">
         <NavLink to="/add">
-          <MdLibraryAdd size={25} />
+          <MdLibraryAdd size={25} className="icon" />
           <div>Add Expense</div>
         </NavLink>
       </li>
       <li className="list-item">
         <NavLink to="/search" className={state === "/search" ? "active" : ""}>
-          <IoSearch size={25} />
+          <IoSearch size={25} className="icon" />
           <div>Search Expense</div>
         </NavLink>
       </li>
       <li className="list-item">
         <NavLink to="/profile">
-          <IoMdPerson size={25} />
+          <IoMdPerson size={25} className="icon" />
           <div>Profile</div>
         </NavLink>
       </li>
       <li className="list-item">
         <Link to="/" onClick={handleLogout}>
-          <MdOutlineLogout size={25} />
+          <MdOutlineLogout size={25} className="icon" />
           <div>Logout</div>
         </Link>
       </li>
