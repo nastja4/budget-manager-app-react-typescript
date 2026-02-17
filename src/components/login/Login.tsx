@@ -25,7 +25,6 @@ const Login: FC<LoginProps> = ({ setIsLoggedIn }) => {
     console.log("data", data);
     setErrorMsg("");
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { data: response } = await axios.get(
         `${BASE_API_URL}/users?email=${data.email}&password=${data.password}`
       );

@@ -1,6 +1,6 @@
 import { MAX_CHARACTER_DESCRIPTION_LENGTH } from "./constants";
 
-export const getFormatttedDate = (date: string) => {
+export const getFormattedDate = (date: string) => {
   return new Date(date).toLocaleDateString("de-DE", {
     year: "numeric",
     month: "short",

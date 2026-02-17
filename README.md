@@ -40,7 +40,11 @@ cd budget-manager-app-react-typescript
 ```
 npm install
 ```
-4. Start the development server:
+4. Start the mock API server (in a separate terminal):
+```
+npm run start-server
+```
+5. Start the development server:
 ```
 npm run dev
 ```
@@ -81,3 +85,46 @@ npm run dev
 This project was developed with the help of a video tutorial by Yogesh Chavan ([Coding Mastery](https://www.youtube.com/@codingmastery_dev)).
 
    
+
+## Backend (Express + TypeScript)
+
+A new backend is available in `/backend` with secure defaults and free-tier friendly deployment setup.
+
+### Local backend development
+1. Install backend dependencies:
+   ```bash
+   cd backend
+   npm install
+   ```
+2. Copy environment file and update values:
+   ```bash
+   cp .env.example .env
+   ```
+3. Start backend dev server:
+   ```bash
+   npm run dev
+   ```
+4. Verify health endpoint:
+   - `GET http://localhost:8080/health` returns `{ "status": "ok" }`.
+
+You can also run it from the repo root with:
+```bash
+npm run backend:dev
+```
+
+### Backend env vars
+- `NODE_ENV` (`development` | `test` | `production`)
+- `PORT` (default `8080`)
+- `DATABASE_URL` (Neon Postgres connection string)
+- `CORS_ORIGINS` (comma-separated allowed origins)
+- `FRONTEND_URL` (production frontend origin)
+
+### Render + Neon deployment notes
+- Deploy `/backend` as a Render Web Service.
+- Set Render start command to `npm run start` and build command to `npm run build`.
+- Configure `DATABASE_URL` using a Neon Postgres free-tier connection string.
+- Set `FRONTEND_URL` to your deployed frontend URL so CORS allows production traffic.
+
+### Next steps
+- Replace auth scaffold under `/api/auth` with real login/register endpoints.
+- Run Prisma migrations against Neon and add database-backed models/queries.
