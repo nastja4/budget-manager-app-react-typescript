@@ -81,3 +81,42 @@ npm run dev
 This project was developed with the help of a video tutorial by Yogesh Chavan ([Coding Mastery](https://www.youtube.com/@codingmastery_dev)).
 
    
+
+## Backend (new `/backend` service)
+
+A minimal TypeScript + Express backend is included in the `/backend` folder with secure defaults.
+
+### Local development
+1. Open backend folder and install:
+   ```bash
+   cd backend
+   npm install
+   ```
+2. Create env file:
+   ```bash
+   cp .env.example .env
+   ```
+3. Run backend:
+   ```bash
+   npm run dev
+   ```
+4. Check health endpoint:
+   - `GET http://localhost:8080/health` → `{ "status": "ok" }`
+
+### Environment variables
+- `NODE_ENV` (`development` | `test` | `production`)
+- `PORT` (default: `8080`)
+- `DATABASE_URL` (Neon Postgres URL)
+- `CORS_ORIGINS` (comma-separated allowlist)
+- `FRONTEND_URL` (production frontend URL)
+
+### Render deployment (free tier)
+- Deploy `backend/` as a Render Web Service.
+- Build command: `npm run build`
+- Start command: `npm run start`
+- Set `DATABASE_URL` from Neon Postgres.
+- Set CORS vars (`FRONTEND_URL`, optionally `CORS_ORIGINS`).
+
+### Next steps
+- Implement real auth endpoints under `/api/auth`.
+- Run Prisma migrations against Neon and wire DB-backed services.

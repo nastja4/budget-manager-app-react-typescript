@@ -1,0 +1,2 @@
+-- Placeholder initial migration.
+-- Run `npm run prisma:migrate` in /backend after DATABASE_URL is configured.
