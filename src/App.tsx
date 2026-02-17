@@ -128,7 +128,7 @@ const App = () => {
               <Route
                 path="/login"
                 element={
-                  !isLoading ? (
+                  !isLoggedIn ? (
                     <Login setIsLoggedIn={setIsLoggedIn} />
                   ) : (
                     <Navigate to="/" />
