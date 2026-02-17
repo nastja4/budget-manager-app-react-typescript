@@ -40,7 +40,11 @@ cd budget-manager-app-react-typescript
 ```
 npm install
 ```
-4. Start the development server:
+4. Start the mock API server (in a separate terminal):
+```
+npm run start-server
+```
+5. Start the development server:
 ```
 npm run dev
 ```

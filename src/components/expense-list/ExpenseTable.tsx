@@ -7,7 +7,7 @@ import axios from "axios";
 import { BASE_API_URL } from "../../utils/constants";
 import {
   getFormattedPrice,
-  getFormatttedDate,
+  getFormattedDate,
   getShortDescription,
 } from "../../utils/functions";
 
@@ -77,7 +77,7 @@ const ExpenseTable: FC<ExpenseTableProps> = ({ expenses, handleRefresh }) => {
                   <td>{index + 1}</td>
                   <td className="expense-item">{expense_type}</td>
                   <td className="expense-item">
-                    {getFormatttedDate(expense_date)}
+                    {getFormattedDate(expense_date)}
                   </td>
                   <td className="expense-item">
                     {getFormattedPrice(expense_amount)}

@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "start-server": "json-server ./db.json --port 4000 --watch"
+    "start-server": "json-server ./db.json --port 4000 --watch",
+    "test:checks": "node scripts/route-and-typo-check.mjs"
   },
   "dependencies": {
     "axios": "^1.6.8",
